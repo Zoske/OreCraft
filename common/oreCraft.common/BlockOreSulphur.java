@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
+import net.minecraft.src.EntitySilverfish;
 import net.minecraft.src.Item;
 import net.minecraft.src.Material;
 import net.minecraft.src.ModLoader;
@@ -38,24 +39,17 @@ public class BlockOreSulphur extends Block
         return 2 + par1Random.nextInt(4);
     }
     
-  /*  
-    World worldObj = ModLoader.getMinecraftInstance().theWorld;
-    
-    boolean exploded = false;
-    
-    private void explode(int x, int y, int z, float meta)
+
+    public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5)
     {
-    	if(!exploded)
-    	{
-	    	exploded = true;
-	        worldObj.createExplosion(null, x, y, z, 2F);
-    	}
+        if (!par1World.isRemote)
+        {
+            EntityExplode exp = new EntityExplode(par1World);
+            exp.setLocationAndAngles((double)par2 + 0.5D, (double)par3, (double)par4 + 0.5D, 0.0F, 0.0F);
+            par1World.spawnEntityInWorld(exp);
+        }
+
+        super.onBlockDestroyedByPlayer(par1World, par2, par3, par4, par5);
     }
-    
-    public void onBlockDestroyedByPlayer(World world, int x, int z, int y, float F) {
-    	
-    	explode(x, y, z, 2F);
-    }
-    */
     
 }
