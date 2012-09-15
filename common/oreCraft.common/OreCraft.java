@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.src.Achievement;
 import net.minecraft.src.BaseMod;
 import net.minecraft.src.Block;
+import net.minecraft.src.Entity;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.EnumToolMaterial;
@@ -15,6 +16,7 @@ import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PreInit;
@@ -22,6 +24,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraftforge.common.Configuration;
@@ -67,43 +70,43 @@ public class OreCraft {
 	public static EnumArmorMaterial EnumArmorMaterialAdam = EnumHelper.addArmorMaterial ("adamArmor", 35, new int[] {4,9,7,5}, 5);
 	public static EnumArmorMaterial EnumArmorMaterialEnergy = EnumHelper.addArmorMaterial ("energyArmor", 50, new int[] {1,10,3,6}, 10);
 	
-	//public static Achievement Notch = (new Achievement(50, "Notch's Power", 5, 5, MoresMod.hammer, null).setSpecial().registerAchievement());
+	//public static Achievement Notch = (new Achievement(50, "Notch's Power", 5, 5, OreCraft.hammer, null).setSpecial().registerAchievement());
 
 	
 	@PreInit
     public void preInit(FMLPreInitializationEvent event) {
             
-            Configuration moresConfig = new Configuration(event.getSuggestedConfigurationFile());
+            Configuration oreCraftConfig = new Configuration(event.getSuggestedConfigurationFile());
 
-            moresConfig.load();
+            oreCraftConfig.load();
           
-            int BlockOreAdamID = moresConfig.getOrCreateBlockIdProperty("oreAdamantium", 150).getInt();
-            int BlockDarkstoneID = moresConfig.getOrCreateBlockIdProperty("oreDarkstone", 151).getInt();
-            int BlockExpiteID = moresConfig.getOrCreateBlockIdProperty("expite", 152).getInt();
-            int BlockOreLightGemID = moresConfig.getOrCreateBlockIdProperty("oreLightGem", 153).getInt();
-            int BlockAdamID = moresConfig.getOrCreateBlockIdProperty("blockAdam", 154).getInt();
-            int BlockBlockDyteID = moresConfig.getOrCreateBlockIdProperty("dyte", 155).getInt();
-            int BlockQuartzID = moresConfig.getOrCreateBlockIdProperty("quartz", 156).getInt();
-            int BlockSulphurID = moresConfig.getOrCreateBlockIdProperty("sulphur", 157).getInt();
+            int BlockOreAdamID = oreCraftConfig.getOrCreateBlockIdProperty("oreAdamantium", 150).getInt();
+            int BlockDarkstoneID = oreCraftConfig.getOrCreateBlockIdProperty("oreDarkstone", 151).getInt();
+            int BlockExpiteID = oreCraftConfig.getOrCreateBlockIdProperty("expite", 152).getInt();
+            int BlockOreLightGemID = oreCraftConfig.getOrCreateBlockIdProperty("oreLightGem", 153).getInt();
+            int BlockAdamID = oreCraftConfig.getOrCreateBlockIdProperty("blockAdam", 154).getInt();
+            int BlockBlockDyteID = oreCraftConfig.getOrCreateBlockIdProperty("dyte", 155).getInt();
+            int BlockQuartzID = oreCraftConfig.getOrCreateBlockIdProperty("quartz", 156).getInt();
+            int BlockSulphurID = oreCraftConfig.getOrCreateBlockIdProperty("sulphur", 157).getInt();
             
-            int ItemDustAdamID = moresConfig.getOrCreateBlockIdProperty("dustAdam", 400).getInt();
-            int ItemIronStickID = moresConfig.getOrCreateBlockIdProperty("ironStick", 401).getInt();
-            int ItemLightGemID = moresConfig.getOrCreateBlockIdProperty("lightGem", 402).getInt();
-            int ItemIngotAdamID = moresConfig.getOrCreateBlockIdProperty("ingotAdamantium", 403).getInt();
-            int ItemAmethystID = moresConfig.getOrCreateBlockIdProperty("amethyst", 404).getInt();
-            int ItemCoreID = moresConfig.getOrCreateBlockIdProperty("core", 405).getInt();
-            int ItemCCoalID = moresConfig.getOrCreateBlockIdProperty("cCoal", 406).getInt();
+            int ItemDustAdamID = oreCraftConfig.getOrCreateBlockIdProperty("dustAdam", 400).getInt();
+            int ItemIronStickID = oreCraftConfig.getOrCreateBlockIdProperty("ironStick", 401).getInt();
+            int ItemLightGemID = oreCraftConfig.getOrCreateBlockIdProperty("lightGem", 402).getInt();
+            int ItemIngotAdamID = oreCraftConfig.getOrCreateBlockIdProperty("ingotAdamantium", 403).getInt();
+            int ItemAmethystID = oreCraftConfig.getOrCreateBlockIdProperty("amethyst", 404).getInt();
+            int ItemCoreID = oreCraftConfig.getOrCreateBlockIdProperty("core", 405).getInt();
+            int ItemCCoalID = oreCraftConfig.getOrCreateBlockIdProperty("cCoal", 406).getInt();
             
-            int ItemHammerID = moresConfig.getOrCreateBlockIdProperty("hammer", 500).getInt();
+            int ItemHammerID = oreCraftConfig.getOrCreateBlockIdProperty("hammer", 500).getInt();
             
-            int ItemAdamHatID = moresConfig.getOrCreateBlockIdProperty("adamHat", 501).getInt();
-            int ItemAdamChestID = moresConfig.getOrCreateBlockIdProperty("adamChest", 502).getInt();
-            int ItemAdamLegsID = moresConfig.getOrCreateBlockIdProperty("adamLegs", 503).getInt();
-            int ItemAdamBootsID = moresConfig.getOrCreateBlockIdProperty("adamBoots", 504).getInt();
-            int ItemEnergyChestID = moresConfig.getOrCreateBlockIdProperty("energyChest", 505).getInt();
-            int ItemEnergyBootsID = moresConfig.getOrCreateBlockIdProperty("energyBoots", 506).getInt();
+            int ItemAdamHatID = oreCraftConfig.getOrCreateBlockIdProperty("adamHat", 501).getInt();
+            int ItemAdamChestID = oreCraftConfig.getOrCreateBlockIdProperty("adamChest", 502).getInt();
+            int ItemAdamLegsID = oreCraftConfig.getOrCreateBlockIdProperty("adamLegs", 503).getInt();
+            int ItemAdamBootsID = oreCraftConfig.getOrCreateBlockIdProperty("adamBoots", 504).getInt();
+            int ItemEnergyChestID = oreCraftConfig.getOrCreateBlockIdProperty("energyChest", 505).getInt();
+            int ItemEnergyBootsID = oreCraftConfig.getOrCreateBlockIdProperty("energyBoots", 506).getInt();
             
-            moresConfig.save();
+            oreCraftConfig.save();
             
            // addEMCValues();
     }
@@ -240,7 +243,11 @@ public class OreCraft {
         MinecraftForge.setBlockHarvestLevel(blockDarkstone, "pickaxe", 3);
         
         
-       // ModLoader.setInGameHook(this, true, true);
+        LanguageRegistry.instance().addStringLocalization("entity.Explode.name", "en_US", "Explode");
+        EntityRegistry.registerGlobalEntityID(EntityExplode.class, "Explode", EntityRegistry.findGlobalUniqueEntityId());
+        EntityRegistry.registerModEntity(EntityExplode.class, "Explode", 1, this, 128, 1, false);
+        
+        
         
     	proxy.registerRenderThings();
         proxy.initCustomRarityTypes();

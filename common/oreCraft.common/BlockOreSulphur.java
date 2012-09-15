@@ -4,7 +4,8 @@ import java.util.Random;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.EntitySilverfish;
+import oreCraft.common.EntityExplode;
+import net.minecraft.src.EntityLiving;
 import net.minecraft.src.Item;
 import net.minecraft.src.Material;
 import net.minecraft.src.ModLoader;
@@ -44,7 +45,7 @@ public class BlockOreSulphur extends Block
     {
         if (!par1World.isRemote)
         {
-            EntityExplode exp = new EntityExplode(par1World);
+            EntityExplode exp = new EntityExplode(par1World, null);
             exp.setLocationAndAngles((double)par2 + 0.5D, (double)par3, (double)par4 + 0.5D, 0.0F, 0.0F);
             par1World.spawnEntityInWorld(exp);
         }
