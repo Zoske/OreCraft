@@ -25,7 +25,7 @@ public class BlockOreSulphur extends Block
     
     public String getTextureFile()
     {
-    	return "/MoresTexturesBlocks.png";
+    	return "/OreCraftBlocks.png";
     }
  
     /** Breaking Sulphur ore blocks you always get gunpowder, but you have a chanse to get Cristallized Coal **/
@@ -40,7 +40,7 @@ public class BlockOreSulphur extends Block
         return 2 + par1Random.nextInt(4);
     }
     
-
+/*
     public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5)
     {
         if (!par1World.isRemote)
@@ -52,5 +52,5 @@ public class BlockOreSulphur extends Block
 
         super.onBlockDestroyedByPlayer(par1World, par2, par3, par4, par5);
     }
-    
+ */   
 }

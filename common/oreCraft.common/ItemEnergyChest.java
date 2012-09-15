@@ -6,6 +6,7 @@ import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.EnumRarity;
 import net.minecraft.src.ItemArmor;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.Potion;
 import net.minecraftforge.common.IArmorTextureProvider;
 
 public class ItemEnergyChest extends ItemArmor implements IArmorTextureProvider{
@@ -13,6 +14,7 @@ public class ItemEnergyChest extends ItemArmor implements IArmorTextureProvider{
 	public ItemEnergyChest(int par1, EnumArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
 		
 		super(par1, par2EnumArmorMaterial, par3, par4);
+		//this.setPotionEffect(Potion.heal.id, 100, 2, 1.0F);
 		this.setItemName("energyChest");
 		this.setIconIndex(33);
 	}
@@ -36,6 +38,6 @@ public class ItemEnergyChest extends ItemArmor implements IArmorTextureProvider{
     }
 	
 	public String getTextureFile() {
-		return "/MoresTexturesItems.png";
+		return "/OreCraftItems.png";
 	}
 }

@@ -32,6 +32,6 @@ public class ItemAdamBoots extends ItemArmor  implements IArmorTextureProvider{
     }
 	
 	public String getTextureFile() {
-		return "/MoresTexturesItems.png";
+		return "/OreCraftItems.png";
 	}
 }

@@ -32,6 +32,6 @@ public class BlockDarkstone extends Block {
     
     public String getTextureFile() {
     	
-            return "/MoresTexturesBlocks.png";
+            return "/OreCraftBlocks.png";
     }
 }

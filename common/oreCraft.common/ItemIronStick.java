@@ -14,6 +14,6 @@ public class ItemIronStick extends Item {
 	    }
 	 public String getTextureFile() {
 		 
-	            return "/MoresTexturesItems.png";
+	            return "/OreCraftItems.png";
 	    }
 }

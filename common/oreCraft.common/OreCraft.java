@@ -29,16 +29,13 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraftforge.common.Configuration;
 
-@Mod(modid = "OreCraft", name = "OreCraft Mod", version = "0.5.4")
+@Mod(modid = "OreCraft", name = "OreCraft Mod", version = "0.5.5")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 
 public class OreCraft {
 	
 	@SidedProxy(clientSide = "oreCraft.client.ClientProxy", serverSide = "oreCraft.common.CommonProxy")
 	public static CommonProxy proxy;
-	
-	//private static Minecraft minecraft = ModLoader.getMinecraftInstance();
-	//private static boolean jumpKeyDown = false;
 	
 	public static Block oreAdamantium;
 	public static Block blockDarkstone;
@@ -58,6 +55,7 @@ public class OreCraft {
 	public static Item cCoal;
 	
 	public static Item hammer;
+	public static Item voidWand;
 	
 	public static Item adamHat;
 	public static Item adamChest;
@@ -66,7 +64,8 @@ public class OreCraft {
 	public static Item energyChest;
 	public static Item energyBoots;
 	
-	public static EnumToolMaterial EnumToolMaterialHammer = EnumHelper.addToolMaterial("hammer", 3, 9999, 10.0F, 3, 10);
+	public static EnumToolMaterial EnumToolMaterialHammer = EnumHelper.addToolMaterial("hammer", 3, 8000, 10.0F, 3, 10);
+	public static EnumToolMaterial EnumToolMaterialVoidWand = EnumHelper.addToolMaterial("voidWand", 4, 10, 1F, 3, 0);
 	public static EnumArmorMaterial EnumArmorMaterialAdam = EnumHelper.addArmorMaterial ("adamArmor", 35, new int[] {4,9,7,5}, 5);
 	public static EnumArmorMaterial EnumArmorMaterialEnergy = EnumHelper.addArmorMaterial ("energyArmor", 50, new int[] {1,10,3,6}, 10);
 	
@@ -98,17 +97,16 @@ public class OreCraft {
             int ItemCCoalID = oreCraftConfig.getOrCreateBlockIdProperty("cCoal", 406).getInt();
             
             int ItemHammerID = oreCraftConfig.getOrCreateBlockIdProperty("hammer", 500).getInt();
+            int ItemVoidWandID = oreCraftConfig.getOrCreateBlockIdProperty("voidWand", 501).getInt();
             
-            int ItemAdamHatID = oreCraftConfig.getOrCreateBlockIdProperty("adamHat", 501).getInt();
-            int ItemAdamChestID = oreCraftConfig.getOrCreateBlockIdProperty("adamChest", 502).getInt();
-            int ItemAdamLegsID = oreCraftConfig.getOrCreateBlockIdProperty("adamLegs", 503).getInt();
-            int ItemAdamBootsID = oreCraftConfig.getOrCreateBlockIdProperty("adamBoots", 504).getInt();
-            int ItemEnergyChestID = oreCraftConfig.getOrCreateBlockIdProperty("energyChest", 505).getInt();
-            int ItemEnergyBootsID = oreCraftConfig.getOrCreateBlockIdProperty("energyBoots", 506).getInt();
+            int ItemAdamHatID = oreCraftConfig.getOrCreateBlockIdProperty("adamHat", 502).getInt();
+            int ItemAdamChestID = oreCraftConfig.getOrCreateBlockIdProperty("adamChest", 503).getInt();
+            int ItemAdamLegsID = oreCraftConfig.getOrCreateBlockIdProperty("adamLegs", 504).getInt();
+            int ItemAdamBootsID = oreCraftConfig.getOrCreateBlockIdProperty("adamBoots", 505).getInt();
+            int ItemEnergyChestID = oreCraftConfig.getOrCreateBlockIdProperty("energyChest", 506).getInt();
+            int ItemEnergyBootsID = oreCraftConfig.getOrCreateBlockIdProperty("energyBoots", 507).getInt();
             
             oreCraftConfig.save();
-            
-           // addEMCValues();
     }
 	
 	@Init
@@ -132,13 +130,14 @@ public class OreCraft {
         cCoal = new ItemCCoal (406);
         
         hammer = new ItemHammer (500, EnumToolMaterialHammer);
+        voidWand = new ItemVoidWand (501, EnumToolMaterialVoidWand);
 		
-        adamHat = new ItemAdamHat(501, EnumArmorMaterialAdam, ModLoader.addArmor("adamArmor"), 0);
-        adamChest = new ItemAdamChest(502, EnumArmorMaterialAdam, ModLoader.addArmor("adamArmor"), 1);
-        adamLegs = new ItemAdamLegs(503, EnumArmorMaterialAdam, ModLoader.addArmor("adamArmor"), 2);
-        adamBoots = new ItemAdamBoots(504, EnumArmorMaterialAdam, ModLoader.addArmor("adamArmor"), 3);
-        energyChest = new ItemEnergyChest (505, EnumArmorMaterialEnergy, ModLoader.addArmor("energyArmor"), 1);
-        energyBoots = new ItemEnergyBoots (506, EnumArmorMaterialEnergy, ModLoader.addArmor("energyArmor"), 3);
+        adamHat = new ItemAdamHat(502, EnumArmorMaterialAdam, ModLoader.addArmor("adamArmor"), 0);
+        adamChest = new ItemAdamChest(503, EnumArmorMaterialAdam, ModLoader.addArmor("adamArmor"), 1);
+        adamLegs = new ItemAdamLegs(504, EnumArmorMaterialAdam, ModLoader.addArmor("adamArmor"), 2);
+        adamBoots = new ItemAdamBoots(505, EnumArmorMaterialAdam, ModLoader.addArmor("adamArmor"), 3);
+        energyChest = new ItemEnergyChest (506, EnumArmorMaterialEnergy, ModLoader.addArmor("energyArmor"), 1);
+        energyBoots = new ItemEnergyBoots (507, EnumArmorMaterialEnergy, ModLoader.addArmor("energyArmor"), 3);
        
 		
         // Name //
@@ -161,7 +160,8 @@ public class OreCraft {
    	 	LanguageRegistry.addName(cCoal, "Crystallized Coal");
    	 	
    	 	LanguageRegistry.addName(hammer, "Notch's Hammer");
-   	 	
+   	 	LanguageRegistry.addName(voidWand, "Void Wand");
+   	 
    	 	LanguageRegistry.addName(adamHat, "Adamantium Helmet");
    	 	LanguageRegistry.addName(adamChest, "Adamantium Chestplate");
    	 	LanguageRegistry.addName(adamLegs, "Adamantium Leggins");
@@ -194,6 +194,7 @@ public class OreCraft {
     	GameRegistry.addRecipe(new ItemStack(Block.glowStone), new Object[] {"XXX", "XXX", "XXX", 'X', lightGem});
     	GameRegistry.addRecipe(new ItemStack(blockDarkstone, 8), new Object[] {"XXX", "X#X", "XXX", 'X', Block.obsidian, '#', lightGem});
     	GameRegistry.addRecipe(new ItemStack(hammer), new Object[] {"XXX", "XOX", " S ", 'X', ingotAdam, 'S', ironStick, 'O', core});
+    	GameRegistry.addRecipe(new ItemStack(voidWand), new Object[] {"  C", " E ", "S  ", 'S', ironStick, 'E', Item.enderPearl, 'C', core});
     	GameRegistry.addShapelessRecipe(new ItemStack(ingotAdam, 9), new Object[] { new ItemStack(blockAdam) });
     	GameRegistry.addRecipe(new ItemStack(core), new Object [] { "X#X", "#D#", "X#X", 'X', Item.redstone, '#', amethyst, 'D', Item.diamond});
     	
@@ -243,34 +244,16 @@ public class OreCraft {
         MinecraftForge.setBlockHarvestLevel(blockDarkstone, "pickaxe", 3);
         
         
+        
+        /*
         LanguageRegistry.instance().addStringLocalization("entity.Explode.name", "en_US", "Explode");
         EntityRegistry.registerGlobalEntityID(EntityExplode.class, "Explode", EntityRegistry.findGlobalUniqueEntityId());
         EntityRegistry.registerModEntity(EntityExplode.class, "Explode", 1, this, 128, 1, false);
-        
-        
-        
+       */
+
+
     	proxy.registerRenderThings();
         proxy.initCustomRarityTypes();
 	}
-	/*
-	public boolean onTickInGame(float f, Minecraft minecraft) {
-		if(minecraft.thePlayer.inventory.armorItemInSlot(0) != null)
-        {
-			EntityPlayer Player = ModLoader.getMinecraftInstance().thePlayer;
-            ItemStack itemstack = minecraft.thePlayer.inventory.armorItemInSlot(0);
-            MoresMod _tmp = this;
-            if(itemstack.itemID == energyBoots.shiftedIndex) {
-            	
-                if (Keyboard.isKeyDown(minecraft.gameSettings.keyBindJump.keyCode) && minecraft.thePlayer.motionY > 0.00) {
-                
-                	minecraft.thePlayer.motionY += 0.066D;
-                }
-                
-                minecraft.thePlayer.stepHeight = 1.0F;
-                minecraft.thePlayer.fallDistance = 0.0F;
-            }   
-        }
-		return true;
-	}
-	*/ 
+	
 }

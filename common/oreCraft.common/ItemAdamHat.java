@@ -31,6 +31,6 @@ public class ItemAdamHat extends ItemArmor implements IArmorTextureProvider {
 	 return OreCraft.proxy.getCustomRarityType(CustomItemRarity.CYAN);
     }
 	public String getTextureFile() {
-		return "/MoresTexturesItems.png";
+		return "/OreCraftItems.png";
 	}
 }

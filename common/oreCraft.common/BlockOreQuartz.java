@@ -20,7 +20,7 @@ public class BlockOreQuartz extends Block
     
     public String getTextureFile()
     {
-    	return "/MoresTexturesBlocks.png";
+    	return "/OreCraftBlocks.png";
     }
 
     public int idDropped(int par1, Random par2Random, int par3) {

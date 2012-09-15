@@ -22,7 +22,7 @@ public class BlockDyte extends Block
     
     public String getTextureFile()
     {
-    	return "/MoresTexturesBlocks.png";
+    	return "/OreCraftBlocks.png";
     }
     
     public int quantityDropped (Random random) {

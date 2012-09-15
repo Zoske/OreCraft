@@ -21,7 +21,7 @@ public class BlockExpite extends Block
     
     public String getTextureFile()
     {
-    		return "/MoresTexturesBlocks.png";
+    		return "/OreCraftBlocks.png";
     }
     public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5)
     {

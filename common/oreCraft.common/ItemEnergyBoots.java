@@ -37,6 +37,6 @@ public class ItemEnergyBoots extends ItemArmor  implements IArmorTextureProvider
     }
 	
 	public String getTextureFile() {
-		return "/MoresTexturesItems.png";
+		return "/OreCraftItems.png";
 	}
 }

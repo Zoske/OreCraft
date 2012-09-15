@@ -24,7 +24,7 @@ public class ItemCore extends Item {
 	 
 	public String getTextureFile() {
 		 
-		 return "/MoresTexturesItems.png";
+		 return "/OreCraftItems.png";
 	}
 	 
 	@SideOnly(Side.CLIENT)

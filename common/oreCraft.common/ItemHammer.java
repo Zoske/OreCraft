@@ -1,6 +1,7 @@
 package oreCraft.common;
 
 import net.minecraft.src.Block;
+import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EnumRarity;
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.ItemPickaxe;
@@ -21,7 +22,7 @@ public class ItemHammer extends ItemPickaxe {
 	
 	public String getTextureFile() {
 		
-		return "/MoresTexturesItems.png";
+		return "/OreCraftItems.png";
 	}
 	 
 	public boolean canHarvestBlock(Block par1Block) {
