@@ -228,8 +228,7 @@ public class OreCraft {
     	GameRegistry.registerWorldGenerator(new WorldgeneratorDyte());
     	GameRegistry.registerWorldGenerator(new WorldgeneratorQuartz());
     	GameRegistry.registerWorldGenerator(new WorldgeneratorSuphur());
-    	
-    	GameRegistry.registerWorldGenerator(new WorldgeneratorCrypt());
+
     	
     	// Dungeon Loot //
     	

@@ -20,13 +20,19 @@ public class WorldgeneratorAdam implements IWorldGenerator {
 		 }
 			private void generateSurface(World world, Random random, int blockX, int blockZ) 
 		 {
-			  int Xcoord = blockX + random.nextInt(16);
-			  int Ycoord = random.nextInt(20);
-			  int Zcoord = blockZ + random.nextInt(16);
+			int Xcoord = blockX + random.nextInt(16);
+			int Ycoord = random.nextInt(20);
+			int Zcoord = blockZ + random.nextInt(16);
 			  
 			  (new WorldGenMinable(OreCraft.oreAdamantium.blockID, 2)).generate(world, random, Xcoord, Ycoord, Zcoord);
-		 }
 		 
+			int Xcoord1 = blockX + random.nextInt(16);
+			int Ycoord1 = random.nextInt(64);
+			int Zcoord1 = blockZ + random.nextInt(16);
+			   
+			 (new WorldgeneratorCrypt()).generate(world, random, Xcoord1, Ycoord1, Zcoord1);
+		 
+		 }
 		 private void generateNether(World world, Random random, int blockX, int blockZ) 
 		 {
 			 
